@@ -1,0 +1,32 @@
+
+
+
+
+[data|Nat : Type where
+  Z : Nat
+  S : Nat -> Nat
+]
+
+[data|Bool : Type where
+  True : Bool
+  False : Bool
+]
+
+[class|Eq (x : Type) where
+  (==) : x -> x -> Bool]
+
+not = \x -> [case|x of
+  True -> False
+  False -> True
+]
+
+[instance|Eq Bool where
+  (==) = \x y -> [case|x of
+    True -> y
+    False -> not y]]
+
+plus : Nat -> Nat -> Nat =
+  \x y -> [case|x of
+    Z -> y
+    S x2 -> S (plus x2 y)]
+
